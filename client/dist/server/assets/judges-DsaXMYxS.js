@@ -1,6 +1,6 @@
 import { X as __toESM, c as require_jsx_runtime, q as require_react } from "./__23tanstack-start-server-fn-resolver-DYGRXsYa.js";
 import { r as getJudges } from "./home.functions-DHVcA4rM.js";
-import { t as PageShell } from "./PageShell-Dc661c-j.js";
+import { t as PageShell } from "./PageShell-DWnBKIZq.js";
 //#region src/routes/judges.tsx?tsr-split=component
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();

@@ -1,7 +1,7 @@
 import { N as escapeHtml, X as __toESM, c as require_jsx_runtime, i as useRouter, q as require_react, s as useHydrated } from "./__23tanstack-start-server-fn-resolver-DYGRXsYa.js";
 import { b as createNonReactiveReadonlyStore, c as appendUniqueUserTags, d as getAssetCrossOrigin, f as getScriptPreloadAttrs, g as RouterCore, h as resolveManifestCssLink, n as Outlet, y as createNonReactiveMutableStore } from "./Match-DPOZnGqa.js";
 import { n as Link } from "./createSsrRpc-CR1ROAQz.js";
-import { a as createRootRouteWithContext, i as createFileRoute, r as lazyRouteComponent, t as Route$4 } from "./_caseId-CRLpj4bg.js";
+import { a as createRootRouteWithContext, i as createFileRoute, r as lazyRouteComponent, t as Route$4 } from "./_caseId-C42tM42b.js";
 import { C as skipToken, E as QueryClientProvider, _ as noop, a as createRetryer, b as resolveQueryValue, c as focusManager, d as functionalUpdate, f as hashKey, g as matchQuery, h as matchMutation, i as Removable, l as Subscribable, n as Query, o as onlineManager, p as hashQueryKeyByOptions, s as notifyManager, v as partialMatchKey } from "./queryOptions-CmK3ISSQ.js";
 import { n as homeStatsQuery, r as trendingCasesQuery, t as caseOfTheDayQuery } from "./routes-C4J0IZfy.js";
 //#region node_modules/@tanstack/react-router/dist/esm/routerStores.js
@@ -1155,7 +1155,7 @@ function RootComponent() {
 }
 //#endregion
 //#region src/routes/index.tsx
-var $$splitComponentImporter$2 = () => import("./routes-DOesQmNO.js");
+var $$splitComponentImporter$2 = () => import("./routes-BjUzN5Th.js");
 var Route$2 = createFileRoute("/")({
 	loader: ({ context }) => Promise.all([
 		context.queryClient.ensureQueryData(caseOfTheDayQuery),
@@ -1181,7 +1181,7 @@ var Route$2 = createFileRoute("/")({
 });
 //#endregion
 //#region src/routes/judges.tsx
-var $$splitComponentImporter$1 = () => import("./judges-cly8iB9m.js");
+var $$splitComponentImporter$1 = () => import("./judges-DsaXMYxS.js");
 var Route$1 = createFileRoute("/judges")({
 	component: lazyRouteComponent($$splitComponentImporter$1, "component"),
 	head: () => ({ meta: [{ title: "Judges | Ghana Supreme Court Legal Archive" }, {
@@ -1191,7 +1191,7 @@ var Route$1 = createFileRoute("/judges")({
 });
 //#endregion
 //#region src/routes/search.tsx
-var $$splitComponentImporter = () => import("./search-D5fU70wY.js");
+var $$splitComponentImporter = () => import("./search-CuRVI-QK.js");
 var Route = createFileRoute("/search")({
 	validateSearch: (search) => ({ q: typeof search.q === "string" ? search.q : "" }),
 	component: lazyRouteComponent($$splitComponentImporter, "component"),

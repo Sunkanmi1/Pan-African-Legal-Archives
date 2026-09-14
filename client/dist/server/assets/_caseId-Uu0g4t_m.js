@@ -1,7 +1,7 @@
 import { c as require_jsx_runtime } from "./__23tanstack-start-server-fn-resolver-DYGRXsYa.js";
-import { n as caseDetailQuery, t as Route } from "./_caseId-CRLpj4bg.js";
+import { n as caseDetailQuery, t as Route } from "./_caseId-C42tM42b.js";
 import { t as useSuspenseQuery } from "./useSuspenseQuery-B4rGsk2G.js";
-import { t as PageShell } from "./PageShell-Dc661c-j.js";
+import { t as PageShell } from "./PageShell-DWnBKIZq.js";
 //#region src/routes/cases/$caseId.tsx?tsr-split=component
 var import_jsx_runtime = require_jsx_runtime();
 function CaseView() {

@@ -1,5 +1,5 @@
 import africaLegalArchiveLogo from "@/assets/panla.png";
-import Goif_Logo from "@/assets/Goif Logo.png";
+import Goif_Logo from "@/assets/Goif-Logo.png";
 import { Link } from "@tanstack/react-router";
 
 export function Footer() {

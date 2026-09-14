@@ -427,7 +427,7 @@ var caseDetailQuery = (caseId) => queryOptions({
 });
 //#endregion
 //#region src/routes/cases/$caseId.tsx
-var $$splitComponentImporter = () => import("./_caseId-Ctc7M7RI.js");
+var $$splitComponentImporter = () => import("./_caseId-Uu0g4t_m.js");
 var Route = createFileRoute("/cases/$caseId")({
 	loader: ({ context, params }) => context.queryClient.ensureQueryData(caseDetailQuery(params.caseId)),
 	head: () => ({ meta: [{ title: "Ghana Supreme Court Case — Case Record" }, {

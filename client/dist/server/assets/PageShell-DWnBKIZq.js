@@ -3,8 +3,8 @@ import { n as Link } from "./createSsrRpc-CR1ROAQz.js";
 //#region src/assets/panla.png
 var panla_default = "/assets/panla-AZgPRKUV.png";
 //#endregion
-//#region src/assets/Goif Logo.png
-var Goif_Logo_default = "/assets/Goif%20Logo-xTS23Z7_.png";
+//#region src/assets/Goif-Logo.png
+var Goif_Logo_default = "/assets/Goif-Logo-xTS23Z7_.png";
 //#endregion
 //#region src/components/site/Footer.tsx
 var import_jsx_runtime = require_jsx_runtime();

@@ -2,7 +2,7 @@ import { c as require_jsx_runtime } from "./__23tanstack-start-server-fn-resolve
 import { n as Link } from "./createSsrRpc-CR1ROAQz.js";
 import { t as useSuspenseQuery } from "./useSuspenseQuery-B4rGsk2G.js";
 import { n as homeStatsQuery, r as trendingCasesQuery, t as caseOfTheDayQuery } from "./routes-C4J0IZfy.js";
-import { t as PageShell } from "./PageShell-Dc661c-j.js";
+import { t as PageShell } from "./PageShell-DWnBKIZq.js";
 //#region src/routes/index.tsx?tsr-split=component
 var import_jsx_runtime = require_jsx_runtime();
 function formatLastUpdate(value) {

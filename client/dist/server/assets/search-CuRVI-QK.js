@@ -2,7 +2,7 @@ import { X as __toESM, c as require_jsx_runtime, q as require_react } from "./__
 import { n as Link } from "./createSsrRpc-CR1ROAQz.js";
 import { t as useSearch } from "./useSearch-Bux5FJkr.js";
 import { a as searchCases } from "./home.functions-DHVcA4rM.js";
-import { t as PageShell } from "./PageShell-Dc661c-j.js";
+import { t as PageShell } from "./PageShell-DWnBKIZq.js";
 //#region src/routes/search.tsx?tsr-split=component
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();

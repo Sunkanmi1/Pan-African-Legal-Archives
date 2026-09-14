@@ -1,0 +1,22 @@
+# Node
+node_modules/
+# dist/          <-- disabled so Toolforge keeps built client
+build/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Env
+.env
+.env.local
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
