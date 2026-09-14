@@ -3,7 +3,7 @@ import { Readable } from "node:stream";
 
 import handler from "./client/dist/server/server.js";
 
-const port = Number(process.env.PORT ?? 3000);
+const port = Number(process.env.PORT ?? 8080);
 const host = process.env.HOST ?? "0.0.0.0";
 
 function requestHeaders(headers) {

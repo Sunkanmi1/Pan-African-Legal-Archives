@@ -1,0 +1,19 @@
+# .toolforge.yaml
+type: webservice
+runtime: node20
+healthcheck_path: /api/health
+memory: 1Gi
+cpu: 1
+replicas: 1
+env:
+  NODE_ENV: production
+  PORT: 8080
+  HOST: 0.0.0.0
+  BACKEND_PORT: 8001
+  BACKEND_API_URL: http://127.0.0.1:8001
+build:
+  - echo "Installing Python dependencies..."
+  - pip install --user -r server/requirements.txt
+  - echo "Building client..."
+  - cd client && npm ci && npm run build
+start: sh toolforge-start.sh
