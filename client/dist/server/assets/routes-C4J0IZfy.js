@@ -1,5 +1,5 @@
-import { i as getTrendingCases, n as getHomeStats, t as getCaseOfTheDay } from "./home.functions-CmYphqUR.js";
-import { queryOptions } from "@tanstack/react-query";
+import { t as queryOptions } from "./queryOptions-CmK3ISSQ.js";
+import { i as getTrendingCases, n as getHomeStats, t as getCaseOfTheDay } from "./home.functions-DHVcA4rM.js";
 //#region src/routes/index.tsx?tsr-shared=1
 var caseOfTheDayQuery = queryOptions({
 	queryKey: ["case-of-the-day"],

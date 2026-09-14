@@ -1,5 +1,5 @@
-import { t as createServerFn } from "./createServerFn-CIHAFgYl.js";
-import { t as createServerRpc } from "./createServerRpc-B90ckaqP.js";
+import { t as createServerFn } from "./createServerFn-B6xwD7pN.js";
+import { t as createServerRpc } from "./createServerRpc-D0NW03sk.js";
 //#region src/lib/home.functions.ts?tss-serverfn-split
 var commonsFallbackCategory = "Category:Supreme Court of Ghana building";
 function caseImageIndex(caseId, imageCount) {

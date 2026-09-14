@@ -1,5 +1,5 @@
-import { t as createServerFn } from "./createServerFn-CIHAFgYl.js";
-import { t as createSsrRpc } from "./createSsrRpc-BlvgHNs1.js";
+import { t as createServerFn } from "./createServerFn-B6xwD7pN.js";
+import { t as createSsrRpc } from "./createSsrRpc-CR1ROAQz.js";
 //#region src/lib/home.functions.ts
 var getCaseOfTheDay = createServerFn({ method: "GET" }).handler(createSsrRpc("ce834681437574a06cbf4fbcc6e2287cb5832f209a6b9d4906f5e1699a845843"));
 var getTrendingCases = createServerFn({ method: "GET" }).handler(createSsrRpc("ecd2b46711742f571ff7e97735a13d687c475378c00152e7a8b000e997b008a7"));

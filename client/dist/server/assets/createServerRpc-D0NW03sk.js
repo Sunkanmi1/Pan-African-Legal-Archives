@@ -1,4 +1,4 @@
-import { d as TSS_SERVER_FUNCTION } from "./createServerFn-CIHAFgYl.js";
+import { d as TSS_SERVER_FUNCTION } from "./createServerFn-B6xwD7pN.js";
 //#region node_modules/@tanstack/start-server-core/dist/esm/createServerRpc.js
 var createServerRpc = (serverFnMeta, splitImportFn) => {
 	const url = "/_serverFn/" + serverFnMeta.id;

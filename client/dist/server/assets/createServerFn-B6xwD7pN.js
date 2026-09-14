@@ -1,6 +1,114 @@
 import { AsyncLocalStorage } from "node:async_hooks";
-import { isRedirect, parseRedirect } from "@tanstack/router-core";
-import { mergeHeaders } from "@tanstack/router-core/ssr/client";
+//#region node_modules/@tanstack/router-core/dist/esm/redirect.js
+/**
+* Create a redirect Response understood by TanStack Router.
+*
+* Use from route `loader`/`beforeLoad` or server functions to trigger a
+* navigation. If `throw: true` is set, the redirect is thrown instead of
+* returned. When an absolute `href` is supplied and `reloadDocument` is not
+* set, a full-document navigation is inferred.
+*
+* @param opts Options for the redirect. Common fields:
+* - `href`: absolute URL for external redirects; infers `reloadDocument`.
+* - `statusCode`: HTTP status code to use (defaults to 307).
+* - `headers`: additional headers to include on the Response.
+* - Standard navigation options like `to`, `params`, `search`, `replace`,
+*   and `reloadDocument` for internal redirects.
+* @returns A Response augmented with router navigation options.
+* @link https://tanstack.com/router/latest/docs/framework/react/api/router/redirectFunction
+*/
+function redirect(opts) {
+	opts.statusCode = opts.statusCode || opts.code || 307;
+	if (!opts._builtLocation && !opts.reloadDocument && typeof opts.href === "string") try {
+		new URL(opts.href);
+		opts.reloadDocument = true;
+	} catch {}
+	const headers = new Headers(opts.headers);
+	if (opts.href && headers.get("Location") === null) headers.set("Location", opts.href);
+	const response = new Response(null, {
+		status: opts.statusCode,
+		headers
+	});
+	response.options = opts;
+	if (opts.throw) throw response;
+	return response;
+}
+/** Check whether a value is a TanStack Router redirect Response. */
+/** Check whether a value is a TanStack Router redirect Response. */
+function isRedirect(obj) {
+	return obj instanceof Response && !!obj.options;
+}
+/** True if value is a redirect with a resolved `href` location. */
+/** True if value is a redirect with a resolved `href` location. */
+function isResolvedRedirect(obj) {
+	return isRedirect(obj) && !!obj.options.href;
+}
+/** Parse a serialized redirect object back into a redirect Response. */
+/** Parse a serialized redirect object back into a redirect Response. */
+function parseRedirect(obj) {
+	if (obj !== null && typeof obj === "object" && obj.isSerializedRedirect) return redirect(obj);
+}
+//#endregion
+//#region node_modules/cookie-es/dist/index.mjs
+function splitSetCookieString(cookiesString) {
+	if (Array.isArray(cookiesString)) return cookiesString.flatMap((c) => splitSetCookieString(c));
+	if (typeof cookiesString !== "string") return [];
+	const cookiesStrings = [];
+	let pos = 0;
+	let start;
+	let ch;
+	let lastComma;
+	let nextStart;
+	let cookiesSeparatorFound;
+	const skipWhitespace = () => {
+		while (pos < cookiesString.length && /\s/.test(cookiesString.charAt(pos))) pos += 1;
+		return pos < cookiesString.length;
+	};
+	const notSpecialChar = () => {
+		ch = cookiesString.charAt(pos);
+		return ch !== "=" && ch !== ";" && ch !== ",";
+	};
+	while (pos < cookiesString.length) {
+		start = pos;
+		cookiesSeparatorFound = false;
+		while (skipWhitespace()) {
+			ch = cookiesString.charAt(pos);
+			if (ch === ",") {
+				lastComma = pos;
+				pos += 1;
+				skipWhitespace();
+				nextStart = pos;
+				while (pos < cookiesString.length && notSpecialChar()) pos += 1;
+				if (pos < cookiesString.length && cookiesString.charAt(pos) === "=") {
+					cookiesSeparatorFound = true;
+					pos = nextStart;
+					cookiesStrings.push(cookiesString.slice(start, lastComma));
+					start = pos;
+				} else pos = lastComma + 1;
+			} else pos += 1;
+		}
+		if (!cookiesSeparatorFound || pos >= cookiesString.length) cookiesStrings.push(cookiesString.slice(start));
+	}
+	return cookiesStrings;
+}
+//#endregion
+//#region node_modules/@tanstack/router-core/dist/esm/ssr/headers.js
+function toHeadersInstance(init) {
+	if (init instanceof Headers) return init;
+	else if (Array.isArray(init)) return new Headers(init);
+	else if (typeof init === "object") return new Headers(init);
+	else return null;
+}
+function mergeHeaders(...headers) {
+	return headers.reduce((acc, header) => {
+		const headersInstance = toHeadersInstance(header);
+		if (!headersInstance) return acc;
+		for (const [key, value] of headersInstance.entries()) if (key === "set-cookie") splitSetCookieString(value).forEach((cookie) => acc.append("set-cookie", cookie));
+		else acc.set(key, value);
+		return acc;
+	}, new Headers());
+}
+//#endregion
 //#region node_modules/@tanstack/start-client-core/dist/esm/constants.js
 var TSS_FORMDATA_CONTEXT = "__TSS_CONTEXT";
 var TSS_SERVER_FUNCTION = Symbol.for("TSS_SERVER_FUNCTION");
@@ -268,4 +376,4 @@ function serverFnBaseToMiddleware(options) {
 	};
 }
 //#endregion
-export { runWithStartContext as a, FrameType as c, TSS_SERVER_FUNCTION as d, X_TSS_RAW_RESPONSE as f, getStartContext as i, TSS_CONTENT_TYPE_FRAMED_VERSIONED as l, flattenMiddlewares as n, createNullProtoObject as o, X_TSS_SERIALIZED as p, getStartOptions as r, safeObjectMerge as s, createServerFn as t, TSS_FORMDATA_CONTEXT as u };
+export { redirect as _, runWithStartContext as a, FrameType as c, TSS_SERVER_FUNCTION as d, X_TSS_RAW_RESPONSE as f, isResolvedRedirect as g, isRedirect as h, getStartContext as i, TSS_CONTENT_TYPE_FRAMED_VERSIONED as l, mergeHeaders as m, flattenMiddlewares as n, createNullProtoObject as o, X_TSS_SERIALIZED as p, getStartOptions as r, safeObjectMerge as s, createServerFn as t, TSS_FORMDATA_CONTEXT as u };

@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { Link } from "@tanstack/react-router";
-import { jsx, jsxs } from "react/jsx-runtime";
+import { X as __toESM, c as require_jsx_runtime, q as require_react } from "./__23tanstack-start-server-fn-resolver-DYGRXsYa.js";
+import { n as Link } from "./createSsrRpc-CR1ROAQz.js";
 //#region src/assets/panla.png
 var panla_default = "/assets/panla-AZgPRKUV.png";
 //#endregion
@@ -8,58 +7,59 @@ var panla_default = "/assets/panla-AZgPRKUV.png";
 var Goif_Logo_default = "/assets/Goif%20Logo-xTS23Z7_.png";
 //#endregion
 //#region src/components/site/Footer.tsx
+var import_jsx_runtime = require_jsx_runtime();
 function Footer() {
-	return /* @__PURE__ */ jsx("footer", {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("footer", {
 		className: "border-t border-border bg-primary text-primary-foreground",
-		children: /* @__PURE__ */ jsxs("div", {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "mx-auto grid max-w-[1280px] gap-1 px-5 py-10 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] lg:items-start",
 			children: [
-				/* @__PURE__ */ jsxs("div", { children: [
-					/* @__PURE__ */ jsxs("div", {
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "flex items-center gap-2",
-						children: [/* @__PURE__ */ jsx("img", {
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
 							src: panla_default,
 							alt: "Africa Legal Archive logo",
 							className: "size-10 rounded-full object-cover"
-						}), /* @__PURE__ */ jsx("span", {
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 							className: "font-serif text-lg font-bold",
 							children: "PALA"
 						})]
 					}),
-					/* @__PURE__ */ jsx("p", {
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "mt-4 max-w-sm text-sm leading-relaxed text-primary-foreground/70",
 						children: "A collaborative platform for the preservation and accessibility of African legal knowledge. Operated as a community-driven repository under Creative Commons."
 					}),
-					/* @__PURE__ */ jsx("p", {
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "mt-4 text-xs text-primary-foreground/50",
 						children: "© 2024 Pan-African Legal Archive. Knowledge is the foundation of justice."
 					})
 				] }),
-				/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("p", {
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "eyebrow text-gold-soft",
 					children: "Ecosystem"
-				}), /* @__PURE__ */ jsxs("ul", {
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", {
 					className: "mt-4 space-y-2 text-sm text-primary-foreground/70",
 					children: [
-						/* @__PURE__ */ jsx("li", { children: "Wikidata" }),
-						/* @__PURE__ */ jsx("li", { children: "Wikimedia Commons" }),
-						/* @__PURE__ */ jsx("li", { children: "WikiSource" })
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Wikidata" }),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Wikimedia Commons" }),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "WikiSource" })
 					]
 				})] }),
-				/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("p", {
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "eyebrow text-gold-soft",
 					children: "Legal"
-				}), /* @__PURE__ */ jsx("ul", {
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
 					className: "mt-4 space-y-2 text-sm text-primary-foreground/70",
-					children: /* @__PURE__ */ jsx("li", { children: "CC by 4.0" })
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "CC by 4.0" })
 				})] }),
-				/* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsxs(Link, {
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
 					to: "https://globalopeninitiative.org/",
-					children: [/* @__PURE__ */ jsx("img", {
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
 						src: Goif_Logo_default,
 						alt: "GLOBAL OPEN INITIATIVE FOUNDATION logo",
 						className: "h-15 w-30"
-					}), /* @__PURE__ */ jsx("p", {
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "eyebrow text-sm text-primary-foreground/70",
 						children: "project by GLOBAL OPEN INNITIATIVE FOUNDATION"
 					})]
@@ -80,45 +80,45 @@ var categories = [{
 	icon: "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8m-7 9a7 7 0 0 1 14 0"
 }];
 function Sidebar() {
-	return /* @__PURE__ */ jsx("aside", {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("aside", {
 		className: "hidden w-[248px] shrink-0 self-stretch border-r border-border bg-surface lg:block",
-		children: /* @__PURE__ */ jsxs("div", {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "sticky top-[71px] flex flex-col gap-6 p-6",
 			children: [
-				/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("p", {
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "eyebrow text-gold",
 					children: "Browse Laws"
-				}), /* @__PURE__ */ jsx("p", {
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "mt-1 text-xs text-muted-foreground",
 					children: "Ghana Jurisdiction"
 				})] }),
-				/* @__PURE__ */ jsx("nav", {
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("nav", {
 					className: "flex flex-col gap-1",
-					children: categories.map((c) => /* @__PURE__ */ jsxs(Link, {
+					children: categories.map((c) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
 						to: c.to,
 						className: "flex items-center gap-3 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground [&.active]:bg-accent [&.active]:font-semibold [&.active]:text-foreground",
-						children: [/* @__PURE__ */ jsx("svg", {
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("svg", {
 							"aria-hidden": true,
 							viewBox: "0 0 24 24",
 							className: "size-4",
 							fill: "none",
 							stroke: "currentColor",
 							strokeWidth: "1.6",
-							children: /* @__PURE__ */ jsx("path", { d: c.icon })
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: c.icon })
 						}), c.label]
 					}, c.label))
 				}),
-				/* @__PURE__ */ jsx(Link, {
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
 					to: "/search",
 					className: "text-xs font-semibold text-gold hover:underline",
 					children: "Browse Case Records →"
 				}),
-				/* @__PURE__ */ jsxs("div", {
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "mt-auto flex flex-col gap-1 border-t border-border pt-5 text-sm text-muted-foreground",
-					children: [/* @__PURE__ */ jsx("span", {
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 						className: "cursor-default rounded-md px-3 py-2 hover:bg-accent",
 						children: "Settings"
-					}), /* @__PURE__ */ jsx("span", {
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 						className: "cursor-default rounded-md px-3 py-2 hover:bg-accent",
 						children: "Help"
 					})]
@@ -129,6 +129,7 @@ function Sidebar() {
 }
 //#endregion
 //#region src/components/site/TopNav.tsx
+var import_react = /* @__PURE__ */ __toESM(require_react(), 1);
 var links = [
 	{
 		label: "Home",
@@ -144,48 +145,48 @@ var links = [
 	}
 ];
 function TopNav({ searchPlaceholder = "Search statutes..." }) {
-	const [query, setQuery] = useState("");
+	const [query, setQuery] = (0, import_react.useState)("");
 	function submitSearch(event) {
 		event.preventDefault();
 		const value = query.trim();
 		if (value) window.location.assign(`/search?q=${encodeURIComponent(value)}`);
 	}
-	return /* @__PURE__ */ jsx("header", {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("header", {
 		className: "sticky top-0 z-40 border-b border-border bg-primary text-primary-foreground",
-		children: /* @__PURE__ */ jsxs("div", {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "mx-auto flex h-[71px] max-w-[1280px] items-center gap-6 px-5",
 			children: [
-				/* @__PURE__ */ jsxs(Link, {
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
 					to: "/",
 					className: "flex shrink-0 items-center gap-2",
-					children: [/* @__PURE__ */ jsx("img", {
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
 						src: panla_default,
 						alt: "Africa Legal Archive logo",
 						className: "size-10 rounded-full object-cover"
-					}), /* @__PURE__ */ jsx("span", {
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 						className: "font-serif text-lg font-bold tracking-tight",
 						children: "PALA"
 					})]
 				}),
-				/* @__PURE__ */ jsx("nav", {
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("nav", {
 					className: "hidden items-center gap-6 md:flex",
-					children: links.map((l) => /* @__PURE__ */ jsx(Link, {
+					children: links.map((l) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
 						to: l.to,
 						className: "text-sm text-primary-foreground/75 transition-colors hover:text-gold-soft [&.active]:text-gold-soft",
 						children: l.label
 					}, l.label))
 				}),
-				/* @__PURE__ */ jsx("div", {
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 					className: "ml-auto flex items-center gap-3",
-					children: /* @__PURE__ */ jsxs("form", {
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
 						onSubmit: submitSearch,
 						className: "relative min-w-0 flex-1 sm:flex-none",
 						children: [
-							/* @__PURE__ */ jsx("span", {
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 								className: "sr-only",
 								children: "Search"
 							}),
-							/* @__PURE__ */ jsx("input", {
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
 								type: "search",
 								value: query,
 								onChange: (event) => setQuery(event.target.value),
@@ -193,18 +194,18 @@ function TopNav({ searchPlaceholder = "Search statutes..." }) {
 								placeholder: searchPlaceholder,
 								className: "h-9 w-full rounded-md border border-primary-foreground/20 bg-primary-foreground/10 pl-9 pr-3 text-sm text-primary-foreground placeholder:text-primary-foreground/50 focus:border-gold-soft focus:outline-none sm:w-56 lg:w-72"
 							}),
-							/* @__PURE__ */ jsxs("svg", {
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("svg", {
 								"aria-hidden": true,
 								viewBox: "0 0 24 24",
 								className: "pointer-events-none absolute left-2.5 top-2.5 size-4 text-primary-foreground/50",
 								fill: "none",
 								stroke: "currentColor",
 								strokeWidth: "2",
-								children: [/* @__PURE__ */ jsx("circle", {
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", {
 									cx: "11",
 									cy: "11",
 									r: "7"
-								}), /* @__PURE__ */ jsx("path", { d: "m20 20-3.5-3.5" })]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "m20 20-3.5-3.5" })]
 							})
 						]
 					})
@@ -216,18 +217,18 @@ function TopNav({ searchPlaceholder = "Search statutes..." }) {
 //#endregion
 //#region src/components/site/PageShell.tsx
 function PageShell({ children, withSidebar = true, searchPlaceholder }) {
-	return /* @__PURE__ */ jsxs("div", {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "flex min-h-screen flex-col bg-background",
 		children: [
-			/* @__PURE__ */ jsx(TopNav, { searchPlaceholder }),
-			/* @__PURE__ */ jsxs("div", {
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TopNav, { searchPlaceholder }),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 				className: "mx-auto flex w-full max-w-[1280px] flex-1 items-stretch",
-				children: [withSidebar ? /* @__PURE__ */ jsx(Sidebar, {}) : null, /* @__PURE__ */ jsx("main", {
+				children: [withSidebar ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sidebar, {}) : null, /* @__PURE__ */ (0, import_jsx_runtime.jsx)("main", {
 					className: "min-w-0 flex-1",
 					children
 				})]
 			}),
-			/* @__PURE__ */ jsx(Footer, {})
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Footer, {})
 		]
 	});
 }
