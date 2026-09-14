@@ -1,1 +1,1 @@
-web: sh toolforge-start.sh
+web: npm run build && sh toolforge-start.sh
