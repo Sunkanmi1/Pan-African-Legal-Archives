@@ -2,7 +2,6 @@
   "name": "pan-african-legal-archives",
   "private": true,
   "scripts": {
-    "build": "npm --prefix client install && npm --prefix client run build",
     "start": "sh toolforge-start.sh"
   }
 }
