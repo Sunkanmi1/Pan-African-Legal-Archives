@@ -39,13 +39,13 @@ export const Route = createFileRoute("/")({
     ]),
   head: () => ({
     meta: [
-      { title: "WikiLegal Africa — African Case Law & Legal Archive" },
+      { title: "Pan-African Legal Archive" },
       {
         name: "description",
         content:
           "Browse archived Ghanaian judgments, statutes and court records, freely accessible.",
       },
-      { property: "og:title", content: "WikiLegal Africa — African Case Law & Legal Archive" },
+      { property: "og:title", content: "Pan-African Legal Archive" },
       {
         property: "og:description",
         content: "Landmark judgments, statutes and court records from Ghana, freely accessible.",

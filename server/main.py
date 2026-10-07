@@ -4,7 +4,7 @@ from middleware.error_handler import setup_error_handlers
 from routes import health, search, countries, stats, translations, case_of_day, media, cases, quality, judges, trending
 
 app = FastAPI(
-    title="WikiLegal Africa API",
+    title="PALA API",
     version="0.2.0",
     description="Searchable database of Supreme Court cases accross Africa"
 )

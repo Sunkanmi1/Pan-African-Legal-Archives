@@ -22,7 +22,7 @@ export function Footer() {
           </p>
 
           <p className="mt-4 text-xs text-primary-foreground/50">
-            © 2024 Pan-African Legal Archive. Knowledge is the foundation of justice.
+            © 2026 Pan-African Legal Archive. Knowledge is the foundation of justice.
           </p>
         </div>
 

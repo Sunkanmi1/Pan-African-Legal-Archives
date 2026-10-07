@@ -76,10 +76,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "WikiLegal Africa" },
+      { title: "Pan-African Legal Archive" },
       { name: "description", content: "Supreme Court case platform for Africa" },
-      { name: "author", content: "WikiLegal Africa" },
-      { property: "og:title", content: "WikiLegal Africa" },
+      { name: "author", content: "Pan-African Legal Archive" },
+      { property: "og:title", content: "Pan-African Legal Archive" },
       { property: "og:description", content: "Supreme Court case platform for Africa" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
