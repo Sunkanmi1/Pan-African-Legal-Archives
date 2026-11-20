@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
+import DOMPurify from "dompurify";
+import { useEffect, useRef } from "react";
 import { PageShell } from "@/components/site/PageShell";
 import { getCaseById } from "@/lib/case.functions";
 
@@ -66,16 +68,10 @@ function CaseView() {
 
         <div className="grid gap-10 lg:grid-cols-[1.7fr_1fr]">
           <article className="flex flex-col gap-5">
-            <h2 className="text-xl font-bold text-foreground">Case overview</h2>
             <p className="text-[15px] leading-8 text-foreground">{caseDetail.description}</p>
 
-            {caseDetail.fullText ? (
-              <>
-                <h2 className="mt-4 text-xl font-bold text-foreground">JUDGEMENT</h2>
-                <div className="whitespace-pre-wrap text-[15px] leading-8 text-foreground">
-                  {caseDetail.fullText}
-                </div>
-              </>
+            {caseDetail.fullHtml ? (
+              <RenderedDocument html={caseDetail.fullHtml} />
             ) : (
               <p className="rounded-md bg-secondary p-5 text-sm leading-relaxed text-muted-foreground">
                 The full judgment text is not yet available for this case. The record above is
@@ -142,5 +138,19 @@ function CaseView() {
         </div>
       </div>
     </PageShell>
+  );
+}
+
+function RenderedDocument({ html }: { html: string }) {
+  const documentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (documentRef.current) {
+      documentRef.current.innerHTML = DOMPurify.sanitize(html);
+    }
+  }, [html]);
+
+  return (
+    <div ref={documentRef} className="document-content text-[15px] leading-8 text-foreground" />
   );
 }

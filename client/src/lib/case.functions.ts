@@ -33,6 +33,7 @@ interface BackendCase {
   commons_file_url?: string | null;
   commons_preview_url?: string | null;
   full_text?: string | null;
+  full_html?: string | null;
   opinion_summary?: string;
 }
 
@@ -154,6 +155,7 @@ export interface CaseRecord {
   commonsFileUrl?: string | null;
   commonsPreviewUrl?: string | null;
   fullText?: string | null;
+  fullHtml?: string | null;
   summary: { label: string; value: string }[];
 }
 
@@ -194,6 +196,7 @@ export const getCaseById = createServerFn({ method: "GET" })
       commonsFileUrl: result.commons_file_url,
       commonsPreviewUrl: result.commons_preview_url,
       fullText: result.full_text,
+      fullHtml: result.full_html,
       summary: [
         { label: "Court", value: result.court },
         { label: "Citation", value: result.citation },

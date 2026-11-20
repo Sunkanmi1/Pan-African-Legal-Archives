@@ -24,6 +24,7 @@ class CaseResult(BaseModel):
     commons_file_url: Optional[str] = None
     commons_preview_url: Optional[str] = None
     full_text: Optional[str] = None
+    full_html: Optional[str] = None
     opinion_summary: Optional[str] = None
     source: str = "Wikidata"
 

@@ -1,14 +1,61 @@
 import asyncio
+from html import escape
 import logging
 import re
 from typing import List, Optional
 from urllib.parse import quote, unquote, urlparse
 import httpx
+from bs4 import BeautifulSoup
 from config import settings
 from models import CaseResult
 from services.reliability import get_cached, set_cached, with_retries
 
 logger = logging.getLogger(__name__)
+
+ALLOWED_EDITOR_TAGS = {
+    "a", "b", "blockquote", "br", "caption", "div", "em", "h1", "h2", "h3",
+    "h4", "h5", "h6", "hr", "i", "li", "ol", "p", "s", "strong", "sub",
+    "sup", "table", "tbody", "td", "tfoot", "th", "thead", "tr", "u", "ul",
+}
+ALLOWED_EDITOR_ATTRIBUTES = {"colspan", "rowspan", "scope"}
+DANGEROUS_EDITOR_TAGS = {
+    "embed", "form", "iframe", "object", "script", "style", "svg", "template",
+}
+
+
+def sanitize_editor_html(content: str) -> str:
+    """Keep document formatting while removing active or unsupported markup."""
+    soup = BeautifulSoup(content, "html.parser")
+    page_text = soup.select_one(".pagetext")
+    if page_text:
+        soup = BeautifulSoup(
+            "".join(str(child) for child in page_text.contents),
+            "html.parser",
+        )
+
+    for tag in reversed(soup.find_all(True)):
+        if tag.name in DANGEROUS_EDITOR_TAGS:
+            tag.decompose()
+            continue
+        if tag.name not in ALLOWED_EDITOR_TAGS:
+            tag.unwrap()
+            continue
+
+        for attribute in list(tag.attrs):
+            if attribute == "href" and tag.name == "a":
+                href = str(tag.attrs[attribute]).strip()
+                scheme = urlparse(href).scheme.lower()
+                if scheme not in {"", "http", "https", "mailto"}:
+                    del tag.attrs[attribute]
+            elif attribute not in ALLOWED_EDITOR_ATTRIBUTES:
+                del tag.attrs[attribute]
+    return "".join(str(child) for child in soup.contents)
+
+
+def plain_text_to_html(content: str) -> str:
+    paragraphs = [line.strip() for line in content.splitlines() if line.strip()]
+    return "".join(f"<p>{escape(paragraph)}</p>" for paragraph in paragraphs)
+
 
 PLACEHOLDER_CITATION_PATTERNS = (
     "citation not available",
@@ -51,10 +98,13 @@ class WikisourceService:
         return query.strip(" -:;,.()[]{}")
 
     async def enrich_case(self, cases: List[CaseResult]) -> List[CaseResult]:
-        async with httpx.AsyncClient(timeout=self.timeout) as client:
-            tasks = [self._fetch_case_details(case) for case in cases]
-            enriched_cases = await asyncio.gather(*tasks, return_exceptions=True)
-        return [case for case in enriched_cases if not isinstance(case, Exception)]
+        # Supreme Court judgments are not yet available on Wikisource.
+        wikisource_cases = [case for case in cases if case.court_level.casefold() == "high"]
+        await asyncio.gather(
+            *(self._fetch_case_details(case) for case in wikisource_cases),
+            return_exceptions=True,
+        )
+        return cases
 
     async def _fetch_case_details(self, case: CaseResult) -> CaseResult:
         try:
@@ -68,6 +118,7 @@ class WikisourceService:
             if wikisource_data:
                 case.wikisource_url = wikisource_data.get("url")
                 case.full_text = wikisource_data.get("full_text")
+                case.full_html = wikisource_data.get("full_html")
                 case.opinion_summary = wikisource_data.get("summary")
                 case.commons_preview_url = wikisource_data.get("preview_url")
             return case
@@ -108,6 +159,7 @@ class WikisourceService:
                 return set_cached(cache_key, {
                     "url": f"https://en.wikisource.org/wiki/{page_title.replace(' ', '_')}",
                     "full_text": content.get("full_text"),
+                    "full_html": content.get("full_html"),
                     "summary": content.get("summary")
                 })
             return None
@@ -161,25 +213,20 @@ class WikisourceService:
                 return None
 
             texts = []
+            html_fragments = []
             for title in page_titles:
-                page_data = await with_retries(lambda title=title: request({
-                    "action": "parse",
-                    "page": title,
-                    "prop": "wikitext",
-                    "format": "json",
-                }, self.api_endpoint))
-                raw_text = page_data.get("parse", {}).get("wikitext", {}).get("*", "")
-                cleaned_text = re.sub(r"<noinclude>.*?</noinclude>", "", raw_text, flags=re.DOTALL)
-                cleaned_text = re.sub(r"<pagequality[^>]*/>", "", cleaned_text)
-                cleaned_text = re.sub(r"\{\{[^{}]+\}\}", "", cleaned_text)
-                cleaned_text = re.sub(r"\s+", " ", cleaned_text).strip()
-                if cleaned_text:
-                    texts.append(cleaned_text)
+                page_content = await self._fetch_page_content(title)
+                if page_content and page_content.get("full_text"):
+                    texts.append(page_content["full_text"])
+                if page_content and page_content.get("full_html"):
+                    html_fragments.append(page_content["full_html"])
 
             full_text = "\n\n".join(texts) or None
+            full_html = "".join(html_fragments) or None
             result = {
                 "url": case.wikisource_url or f"https://en.wikisource.org/wiki/Index:{quote(file_name)}",
                 "full_text": full_text,
+                "full_html": full_html,
                 "summary": ((full_text[:500] + "...") if full_text and len(full_text) > 500 else full_text),
                 "preview_url": preview_url,
             }
@@ -189,6 +236,45 @@ class WikisourceService:
             return None
 
     async def _fetch_page_content(self, title: str) -> Optional[dict]:
+        try:
+            async def export_page():
+                async with httpx.AsyncClient(timeout=self.timeout, headers=self.headers) as client:
+                    response = await client.get(
+                        self.api_endpoint,
+                        params={
+                            "action": "visualeditor",
+                            "paction": "parse",
+                            "page": title,
+                            "format": "json",
+                        },
+                    )
+                    response.raise_for_status()
+                    return response.json()
+
+            editor_data = await with_retries(export_page)
+            editor_content = editor_data.get("visualeditor", {}).get("content")
+            if isinstance(editor_content, str) and editor_content.strip():
+                safe_html = sanitize_editor_html(editor_content)
+                document = BeautifulSoup(safe_html, "html.parser")
+                text_blocks = [
+                    block.get_text(" ", strip=True)
+                    for block in document.find_all(
+                        ["blockquote", "h1", "h2", "h3", "h4", "h5", "h6", "li", "p", "td", "th"]
+                    )
+                ]
+                full_text = "\n\n".join(text for text in text_blocks if text)
+                if not full_text:
+                    full_text = document.get_text(" ", strip=True)
+                if full_text:
+                    summary = (full_text[:500] + "...") if len(full_text) > 500 else full_text
+                    return {
+                        "full_text": full_text,
+                        "full_html": safe_html,
+                        "summary": summary,
+                    }
+        except Exception as e:
+            logger.warning("VisualEditor export failed for Wikisource page '%s': %s", title, e)
+
         try:
             async def request():
                 async with httpx.AsyncClient(timeout=self.timeout, headers=self.headers) as client:
@@ -215,6 +301,7 @@ class WikisourceService:
                     summary = (extract[:500] + '...') if len(extract) > 500 else extract
                     return {
                         "full_text": extract,
+                        "full_html": plain_text_to_html(extract),
                         "summary": summary
                     }
                 return None
